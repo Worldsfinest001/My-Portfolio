@@ -14,10 +14,25 @@ This is my personal portfolio website, created to showcase my skills and project
 ## Technologies Used
 - HTML, CSS, JavaScript
 - CSS Flexbox for layouts
+
+
+## Deployment
+The site is hosted on Netlify:
+- Linked my GitHub repository to Netlify for automatic deployment.
+- Configured HTTPS security and tested the live site.
+
+## Challenges and Solutions
+- **Challenge**: Navbar didn’t collapse on mobile devices.
+- **Solution**: Added CSS media queries and tested with Chrome DevTools.
+
+## About Me
+I’m an IT student at the University of Ibadan, and I'm passionate about web development. This portfolio was built during my internship at Netlight Systems Ventures, where I gained front-end development, hosting, and analytics skills.
+
+**Contact**: oladokuntobi11@gmail | [[your-linkedin-profile-url](https://www.linkedin.com/in/oladokun-emmanuel-b59312297/)]
 - Netlify for hosting
 - Git/GitHub for version control
 - Google Analytics for tracking
 
 ## Setup/Installation
 To run this project locally:
-1. Clone the repository:
+1. Clone the repository
