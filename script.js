@@ -159,8 +159,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Form Submission
 if (form) {
     form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
         // Validate form fields
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
@@ -169,6 +167,7 @@ if (form) {
 
         // Simple validation
         if (!name || !email || !subject || !message) {
+            e.preventDefault(); // Stop submission
             showMessage('Please fill in all required fields', 'error');
             return;
         }
@@ -176,6 +175,7 @@ if (form) {
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
+            e.preventDefault(); // Stop submission
             showMessage('Please enter a valid email address', 'error');
             return;
         }
@@ -186,26 +186,15 @@ if (form) {
         submitBtn.innerHTML = '<i class="bx bx-loader-alt bx-spin"></i> Sending...';
         submitBtn.disabled = true;
 
-        // For Netlify Forms, let it handle the submission
-        const formData = new FormData(form);
-        
-        fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(formData).toString()
-        })
-        .then(() => {
-            showMessage('Your message has been sent successfully!', 'success');
-            form.reset();
-        })
-        .catch(error => {
-            showMessage('There was an error sending your message. Please try again.', 'error');
-            console.error('Form submission error:', error);
-        })
-        .finally(() => {
+        // Show success message before redirect
+        showMessage('Your message has been sent successfully!', 'success');
+        form.reset();
+
+        // Allow Netlify to handle the submission and redirect
+        setTimeout(() => {
             submitBtn.textContent = originalBtnText;
             submitBtn.disabled = false;
-        });
+        }, 3000); // Reset button state after 3 seconds
     });
 }
 
